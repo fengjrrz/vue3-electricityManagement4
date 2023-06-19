@@ -1,54 +1,35 @@
 # vue3-admin-plus
 
-**English** | [中文](./README-zh_CN.md)
+The plus version of vue3-admin-ts , provide enterprise-class using demo
 
-> vue3 admin plus provides enterprise-level development demo
+suggestion the Node.js >= 16.0.0。
 
-A new  generation admin  construct   using  vue3(setup-script)+vite3+element-plus ，It's fast!
-
-Use eslint+prettier+gitHooks format and verification code to improve code standardization and development efficiency
-
-Vite need  Node.js 16+ 
 
 
 ## Documents
 
-- [official documentation](https://github.jzfai.top/vue3-admin-doc/)
+- [Official Documentation](https://github.jzfai.top/vue3-admin-doc/)
 
-- [中文官网](https://github.jzfai.top/vue3-admin-doc/zh/)
+- [中文官网](https://github.jzfai.top/vue3-admin-cn-doc/)
+
+
 
 ## Online experience
 
-[github address](https://github.com/jzfai/vue3-admin-plus.git)
-
 [Access address](https://github.jzfai.top/vue3-admin-plus)
 
-国内体验地址：https://github.jzfai.top/vue3-admin-plus
-
-github 地址：  https://github.com/jzfai/vue3-admin-plus.git
-
-
-## recommended study
-
-> A minimal version of element-plus
-
-a minimal version of  element-plus , you can learn it better than learning element-plus directly
-
-[element-plus-mini]( https://github.com/jzfai/element-plus-mini.git)
+[国内体验地址](https://github.jzfai.top/vue3-admin-plus)
 
 
 
 ## Related items
 
-The framework is available in js, ts , plus and electron versions
-- js version：[vue3-element-admin](https://github.com/jzfai/vue3-admin-template.git)
+The framework is available in js,ts, plus and electron versions
+- js version：[vue3-admin-template](https://github.com/jzfai/vue3-admin-template.git) -- basic version
 - ts version：[vue3-element-ts](https://github.com/jzfai/vue3-admin-ts.git)
-- js version for plus：[vue3-element-plus](https://github.com/jzfai/vue3-admin-plus.git)
-- js version for electron：[vue3-element-electron](https://github.com/jzfai/vue3-admin-electron.git)
-- react version： [react-admin-template](https://github.com/jzfai/react-admin-template.git)
-- java Micro-service background data：[micro-service-plus](https://github.com/jzfai/micro-service-plus)
-> development and  experience：two words  Really fragrant！！！！！
-
+- ts version for plus：[vue3-element-plus](https://github.com/jzfai/vue3-admin-plus.git)
+- ts version for electron：[vue3-element-electron](https://github.com/jzfai/vue3-admin-electron.git)
+- java Micro-service background data：[micro-service-single](https://github.com/jzfai/micro-service-single)
 
 
 ## Build Setup
@@ -69,7 +50,6 @@ pnpm i
 pnpm run dev
 ```
 
-using the browser to open http://localhost:5006
 
 ## Build
 
@@ -92,15 +72,10 @@ pnpm run lint
 
 ```
 
-## Extra
-
-Architecture development is not easy. If you feel good, please give me a **start**. The architecture is still being improved. Welcome to join me in development and become Contributors together! ! ! !
-
 
 ## Browsers support
 
 Note: Vue3 is not supported the Internet Explorer
-
 
 
 ## Discussion and Communication

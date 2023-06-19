@@ -3,8 +3,7 @@
 </template>
 
 <script setup>
-import echarts from 'echarts'
-import { onMounted, getCurrentInstance, reactive, onBeforeUnmount } from 'vue'
+import * as echarts from 'echarts'
 
 const props = defineProps({
   className: {
@@ -40,6 +39,7 @@ onBeforeUnmount(() => {
 })
 
 const initChart = () => {
+  // eslint-disable-next-line unicorn/prefer-query-selector
   state.chart = echarts.init(document.getElementById(props.id))
   const xAxisData = []
   const data = []

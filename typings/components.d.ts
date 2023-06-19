@@ -7,13 +7,20 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ColumnFilter: typeof import('./../src/components/ColumnFilter.vue')['default']
+    DictTag: typeof import('./../src/components/DictTag.vue')['default']
     ElSvgIcon: typeof import('./../src/components/ElSvgIcon.vue')['default']
     ElSvgItem: typeof import('./../src/components/Sidebar/ElSvgItem.vue')['default']
     ImportExportComp: typeof import('./../src/components/ImportExportComp.vue')['default']
+    InnerLink: typeof import('./../src/components/InnerLink/index.vue')['default']
+    JsonInput: typeof import('./../src/components/JsonInput.vue')['default']
     LangSelect: typeof import('./../src/components/LangSelect/index.vue')['default']
     Link: typeof import('./../src/components/Sidebar/Link.vue')['default']
     Logo: typeof import('./../src/components/Sidebar/Logo.vue')['default']
     Pagination: typeof import('./../src/components/Pagination/index.vue')['default']
+    ParentView: typeof import('./../src/components/ParentView/index.vue')['default']
+    RightToolbar: typeof import('./../src/components/RightToolbar/index.vue')['default']
+    RightToolBar: typeof import('./../src/components/RightToolBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ScreenFull: typeof import('./../src/components/ScreenFull/index.vue')['default']
@@ -22,6 +29,7 @@ declare module '@vue/runtime-core' {
     SidebarItem: typeof import('./../src/components/Sidebar/SidebarItem.vue')['default']
     SizeSelect: typeof import('./../src/components/SizeSelect/index.vue')['default']
     SvgIcon: typeof import('./../src/icons/SvgIcon.vue')['default']
+    TestUnit: typeof import('./../src/components/TestUnit.vue')['default']
     ThemeSelect: typeof import('./../src/components/ThemeSelect/index.vue')['default']
     Tinymce: typeof import('./../src/components/Tinymce/index.vue')['default']
   }

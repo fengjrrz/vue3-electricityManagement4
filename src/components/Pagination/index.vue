@@ -1,14 +1,13 @@
 <template>
   <div :class="{ hidden: hidden }" class="pagination-container">
     <el-pagination
-      v-model:currentPage="currentPage"
+      v-model:current-page="currentPage"
       v-model:page-size="pageSize"
-      small
       :background="background"
       :layout="layout"
       :page-sizes="pageSizes"
+      :pager-count="pagerCount"
       :total="total"
-      v-bind="$attrs"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     />
@@ -17,13 +16,9 @@
 
 <script setup>
 import { scrollTo } from '@/utils/scroll-to'
-import { computed, ref } from 'vue'
-
-const emit = defineEmits(['update:page', 'update:limit', 'pagination'])
-
 const props = defineProps({
   total: {
-    require: true,
+    required: true,
     type: Number
   },
   page: {
@@ -32,13 +27,18 @@ const props = defineProps({
   },
   limit: {
     type: Number,
-    default: 10
+    default: 20
   },
   pageSizes: {
     type: Array,
     default() {
-      return [10, 15, 20, 30, 50]
+      return [10, 20, 30, 50]
     }
+  },
+  // 移动端页码按钮的数量端默认值5
+  pagerCount: {
+    type: Number,
+    default: document.body.clientWidth < 992 ? 5 : 7
   },
   layout: {
     type: String,
@@ -57,6 +57,8 @@ const props = defineProps({
     default: false
   }
 })
+
+const emit = defineEmits([])
 const currentPage = computed({
   get() {
     return props.page
@@ -73,16 +75,18 @@ const pageSize = computed({
     emit('update:limit', val)
   }
 })
-
-const handleSizeChange = (val) => {
-  emit('pagination', { page: currentPage, limit: val })
-  if (ref(props.autoScroll).value) {
+function handleSizeChange(val) {
+  if (currentPage.value * val > props.total) {
+    currentPage.value = 1
+  }
+  emit('pagination', { page: currentPage.value, limit: val })
+  if (props.autoScroll) {
     scrollTo(0, 800)
   }
 }
-const handleCurrentChange = (val) => {
-  emit('pagination', { page: val, limit: pageSize })
-  if (ref(props.autoScroll).value) {
+function handleCurrentChange(val) {
+  emit('pagination', { page: val, limit: pageSize.value })
+  if (props.autoScroll) {
     scrollTo(0, 800)
   }
 }
@@ -90,8 +94,8 @@ const handleCurrentChange = (val) => {
 
 <style scoped>
 .pagination-container {
+  background: #fff;
   padding: 32px 16px;
-  /*text-align: center;*/
 }
 .pagination-container.hidden {
   display: none;

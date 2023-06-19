@@ -1,7 +1,8 @@
 <template>
   <div class="app-container scroll-y">
-    <div class="mb-1">
-      <el-input v-model="fileName" class="w-150px" placeholder="文件名" />
+    <div class="mt-10px mb-10px">本地excel导出</div>
+    <div class="mb-10px rowSS">
+      <el-input v-model="fileName" style="width: 300px" placeholder="文件名" />
       <el-button class="ml" type="primary" @click="handleExportExcel">
         <el-icon style="vertical-align: middle">
           <Download />
@@ -38,9 +39,9 @@
 
 <script setup>
 import { Download } from '@element-plus/icons-vue'
-import { toRefs, reactive, onBeforeMount } from 'vue'
+import { onBeforeMount, toRefs } from 'vue'
 import { transactionList } from '@/api/remote-search'
-import { aoaToSheetXlsx } from '@/utils/excel'
+import { aoaToSheetXlsx } from './excel'
 import { ElMessage } from 'element-plus'
 const statusFilter = (status) => {
   const statusMap = {
@@ -61,9 +62,8 @@ onBeforeMount(() => {
 
 const fetchData = () => {
   state.listLoading = true
-  transactionList().then((response) => {
-    console.log('response', response)
-    state.list = response.data?.items
+  transactionList().then(({ data }) => {
+    state.list = data.data?.items
     state.listLoading = false
   })
 }
@@ -78,10 +78,12 @@ const handleExportExcel = () => {
     })
     return
   }
-  let table = unref(state.list)
-  let header = ['ID', '订单号', '价格', '用户名']
-  let data = table.map((item, index) => {
-    let { id, order_no, price, username } = item
+  const table = unref(state.list)
+  const header = ['ID', '订单号', '价格', '用户名']
+  const data = table.map((item, index) => {
+    // eslint-disable-next-line camelcase
+    const { id, order_no, price, username } = item
+    // eslint-disable-next-line camelcase
     return [index, order_no, price, username]
   })
   aoaToSheetXlsx({
@@ -92,7 +94,7 @@ const handleExportExcel = () => {
 }
 
 //导出属性到页面中使用
-let { list, listLoading } = toRefs(state)
+const { list, listLoading } = toRefs(state)
 </script>
 
 <style scoped lang="scss"></style>
