@@ -20,7 +20,7 @@
   </header>
   <!-- 作用域插槽 -->
   <footer>
-    <slot name="footer" testProps="子组件作用域传的值">
+    <slot name="footer" test-props="子组件作用域传的值">
       <h3>没传footer插槽</h3>
     </slot>
   </footer>
