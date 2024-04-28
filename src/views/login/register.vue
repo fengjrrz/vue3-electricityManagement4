@@ -10,11 +10,41 @@
         <div class="title-container">
           <h3 class="title text-center">{{ settings.title }}</h3>
         </div>
-        <el-form-item prop="userName" :rules="formRules.isNotNull('user not empty')">
+        <el-form-item prop="username" :rules="formRules.isNotNull('user not empty')">
           <span class="svg-container">
             <ElSvgIcon name="User" :size="14" />
           </span>
-          <el-input v-model="registerForm.userName" placeholder="userName" />
+          <el-input v-model="registerForm.username" size="small" placeholder="用户名" />
+        </el-form-item>
+        <el-form-item prop="name" :rules="formRules.isNotNull('user not empty')">
+          <span class="svg-container">
+            <ElSvgIcon name="User" :size="14" />
+          </span>
+          <el-input v-model="registerForm.name" placeholder="姓名" />
+        </el-form-item>
+        <el-form-item prop="email" :rules="formRules.isNotNull('user not empty')">
+          <span class="svg-container">
+            <ElSvgIcon name="User" :size="14" />
+          </span>
+          <el-input v-model="registerForm.email" placeholder="邮箱" />
+        </el-form-item>
+        <el-form-item prop="phone" :rules="formRules.isNotNull('user not empty')">
+          <span class="svg-container">
+            <ElSvgIcon name="User" :size="14" />
+          </span>
+          <el-input v-model="registerForm.phone" placeholder="电话" />
+        </el-form-item>
+        <el-form-item prop="studentNo" :rules="formRules.isNotNull('user not empty')">
+          <span class="svg-container">
+            <ElSvgIcon name="User" :size="14" />
+          </span>
+          <el-input v-model="registerForm.studentNo" placeholder="学生号" />
+        </el-form-item>
+        <el-form-item prop="roomId" :rules="formRules.isNotNull('user not empty')">
+          <span class="svg-container">
+            <ElSvgIcon name="User" :size="14" />
+          </span>
+          <el-input v-model="registerForm.roomId" placeholder="房间ID" /><!-- 下拉框自己写一下 -->
           <!--占位-->
         </el-form-item>
         <el-form-item prop="password" :rules="formRules.isNotNull('password not empty')">
@@ -27,7 +57,7 @@
             v-model="registerForm.password"
             :type="passwordType"
             name="password"
-            placeholder="password"
+            placeholder="密码"
             @keyup.enter="handleLogin"
           />
           <span class="show-pwd" @click="showPwd">
@@ -45,21 +75,12 @@
             v-model="registerForm.confirmPassword"
             :type="passwordType"
             name="confirmPassword"
-            placeholder="confirmPassword"
+            placeholder="确认密码"
             @keyup.enter="handleLogin"
           />
           <span class="show-pwd" @click="showPwd">
             <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
           </span>
-        </el-form-item>
-        <el-form-item v-if="captchaEnabled" prop="code" :rules="formRules.isNotNull('验证码不能为空')">
-          <div class="rowBC" style="width: 100%">
-            <span class="svg-container">
-              <svg-icon icon-class="validCode" class="el-input__icon input-icon" />
-            </span>
-            <el-input v-model="registerForm.code" placeholder="验证码" @keyup.enter="handleLogin" />
-            <img v-if="codeUrl" :src="codeUrl" class="login-code-img" @click="getCode" />
-          </div>
         </el-form-item>
         <el-form-item style="width: 100%">
           <el-button :loading="loading" size="large" type="primary" style="width: 100%" @click.prevent="handleLogin">
@@ -88,10 +109,14 @@ const { settings } = useBasicStore()
 const formRules = useElement().formRules
 //form
 const registerForm = reactive({
-  userName: '',
+  username: '',
   password: '',
   confirmPassword: '',
-  code: '',
+  name:'',
+  email:'',
+  phone:'',
+  roomId:'',
+  studentNo:'',
   uuid: '',
   userType: 'sys_user'
 })
@@ -155,6 +180,9 @@ const router = useRouter()
 const basicStore = useBasicStore()
 
 const loginFunc = () => {
+  delete registerForm.confirmPassword
+  delete registerForm.uuid
+  delete registerForm.userType
   register(registerForm)
     .then(({ data }) => {
       elMessage('注册成功')
@@ -187,14 +215,14 @@ const getCode = () => {
   })
 }
 
-const { rememberMe, userName, password, setLoginInfo } = useConfigStore()
+const { rememberMe, username, password, setLoginInfo } = useConfigStore()
 
 const recordLoginInfo = () => {
   //remember password
   if (registerForm.rememberMe) {
     setLoginInfo(registerForm)
   } else {
-    registerForm.userName = ''
+    registerForm.username = ''
     registerForm.password = ''
     registerForm.rememberMe = false
     setLoginInfo(registerForm)
@@ -202,7 +230,7 @@ const recordLoginInfo = () => {
 }
 
 const showLoginInfo = () => {
-  registerForm.userName = userName
+  registerForm.username = username
   registerForm.password = password
   registerForm.rememberMe = rememberMe
 }
@@ -228,6 +256,15 @@ $bg: #ffe4b5;
 $dark_gray: #333;
 $gray: #999;
 $light_gray: #eee;
+
+:deep(.el-input__inner) {
+  padding-bottom: 0 !important;
+  padding-top: 0 !important;
+  height: 30px !important;
+}
+:deep(.el-form-item) {
+  margin-bottom: 20px;
+}
 .login-container {
   height: 100vh;
   position: relative;

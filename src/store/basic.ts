@@ -44,7 +44,7 @@ export const useBasicStore = defineStore('basic', {
     setFilterAsyncRoutes(routes) {
       this.$patch((state: any) => {
         state.filterAsyncRoutes = routes
-        state.allRoutes = constantRoutes.concat(routes)
+        state.allRoutes = constantRoutes
       })
     },
     setUserInfo({ user, roles, permission }) {

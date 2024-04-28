@@ -1,12 +1,29 @@
 import request from '@/utils/axios-req'
 import settings from '@/settings'
 
+export const fetchUserList = (params) => {
+  //查询列表
+  return request({
+    url: '/api/user/list',
+    method: 'get',
+    params
+  })
+}
+
+export const fetchBuildingList = (params) => {
+  return request({
+    url: '/api/building/list',
+    method: 'get',
+    params
+  })
+}
+
 //获取用户信息
 export const userInfoReq = () => {
   return new Promise((resolve) => {
     const reqConfig = {
       url: 'getInfo',
-      data:{platformId: settings.platformId},
+      data: { platformId: settings.platformId },
       method: 'get'
     }
     request(reqConfig).then((res) => {
@@ -45,7 +62,7 @@ export const register = (data) => {
   return request({
     url: 'register',
     method: 'post',
-    params:data
+    params: data
   })
 }
 
@@ -64,9 +81,9 @@ export const getCodeImg = () => {
     headers: {
       isToken: false
     },
-    data:{
-      width:100,
-      height:50
+    data: {
+      width: 100,
+      height: 50
     },
     method: 'get'
   })
@@ -89,7 +106,7 @@ export const listReq = (query) => {
   return request({
     url: '/system/user/list',
     method: 'post',
-    data: query||{}
+    data: query || {}
   })
 }
 

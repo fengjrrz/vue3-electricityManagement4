@@ -51,6 +51,26 @@ export const constantRoutes = [
         meta: { title: 'Dashboard', elSvgIcon: 'Fold', affix: true }
       }
     ]
+  },
+  {
+    path: '/system',
+    component: Layout,
+    meta: { title: '系统管理', icon: 'system' },
+    redirect: '/system/user',
+    children: [
+      {
+        path: 'user',
+        name: 'User',
+        component: () => import('@/views/system/userManage/index.vue'),
+        meta: { title: '用户管理', icon: 'user' }
+      },
+      {
+        path: 'userCenter',
+        name: 'UserCenter',
+        component: () => import('@/views/system/userCenter/index.vue'),
+        meta: { title: '用户中心', icon: 'user' }
+      }
+    ]
   }
   // {
   //   path: '/system',
